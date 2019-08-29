@@ -1,0 +1,28 @@
+{% extends "outpost/base.html" %}
+
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+<div class="page-header">
+  <h1>
+    {% if object %}
+    {% trans "Change URL redirect" %}
+    {% else %}
+    {% trans "Create new URL redirect" %}
+    {% endif %}
+  </h1>
+</div>
+<form action="." method="post">
+  {% csrf_token %}
+  {{ form |crispy }}
+  <button class="btn btn-primary" type="submit">
+    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+    {% trans "Save" %}
+  </button>
+  <a class="btn btn-danger" href="{% url 'redirect:index' %}">
+    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+    {% trans "Cancel" %}
+  </a>
+</form>
+{% endblock %}

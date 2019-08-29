@@ -1,0 +1,27 @@
+{% extends "outpost/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="page-header">
+  <h1>
+    {% trans "Delete URL redirect" %}
+  </h1>
+</div>
+<form method="post">
+  {% csrf_token %}
+  <p>
+  {% blocktrans with object=object %}
+  Are you sure you want to delete "{{ object }}"?
+  {% endblocktrans %}
+  </p>
+  <button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+    {% trans "Confirm" %}
+  </button>
+  <a class="btn btn-primary" href="{% url 'redirect:index' %}">
+    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+    {% trans "Cancel" %}
+  </a>
+</form>
+{% endblock %}
