@@ -16,11 +16,10 @@
 </div>
 <div class="alert alert-info" role="alert">
   <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-  {% blocktrans %}
-  You can create a temporary Username and Password to connect to the WLAN named <code>mug-guest</code>. The lifetime for this account can be up to 24 hours.
+  {% blocktrans with domain=request.get_host %}
+  You can create a short URL unter the domain of {{ doamin }} which will redirect all visitors to whatever URL you defined as the target.
   {% endblocktrans %}
 </div>
-</p>
 {% if object_list %}
 <table class="table table-hover table-vcenter">
   <tr>
