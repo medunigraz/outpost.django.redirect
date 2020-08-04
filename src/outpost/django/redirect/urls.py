@@ -2,6 +2,8 @@ from django.conf.urls import url
 
 from . import views
 
+app_name = "redirect"
+
 urlpatterns = [
     url(r"^create/$", views.CreateView.as_view(), name="create"),
     url(r"^edit/(?P<pk>\d+)/$", views.UpdateView.as_view(), name="edit"),
