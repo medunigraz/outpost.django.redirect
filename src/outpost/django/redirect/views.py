@@ -8,7 +8,10 @@ from guardian.mixins import (
 )
 from guardian.shortcuts import assign_perm
 
-from .models import RedirectUrl, RedirectUrlForm
+from .models import (
+    RedirectUrl,
+    RedirectUrlForm,
+)
 
 
 class RedirectView(generic.RedirectView):

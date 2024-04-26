@@ -5,7 +5,10 @@ from django.db import models
 from django.db.models.signals import post_init
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
-from guardian.models import GroupObjectPermissionBase, UserObjectPermissionBase
+from guardian.models import (
+    GroupObjectPermissionBase,
+    UserObjectPermissionBase,
+)
 
 from .conf import settings
 
