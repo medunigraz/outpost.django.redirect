@@ -3,25 +3,33 @@
 {% load i18n %}
 
 {% block content %}
-<div class="page-header">
-  <h1>
-    {% trans "Delete URL redirect" %}
-  </h1>
-</div>
-<form method="post">
+<form method="post" action="{% url 'redirect:delete' pk=object.pk %}">
+  <div class="border-bottom mb-2">
+    <h1>
+      {% blocktrans with slug=object.slug %}
+      Delete {{ slug }}
+      {% endblocktrans %}
+    </h1>
+  </div>
   {% csrf_token %}
-  <p>
-  {% blocktrans with object=object %}
-  Are you sure you want to delete "{{ object }}"?
-  {% endblocktrans %}
-  </p>
-  <button type="submit" class="btn btn-danger">
-    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-    {% trans "Confirm" %}
-  </button>
-  <a class="btn btn-primary" href="{% url 'redirect:index' %}">
-    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
-    {% trans "Cancel" %}
-  </a>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text">
+      {% blocktrans with slug=object.slug destination=object.destination %}
+      Are you sure you want to delete the URL redirect {{ slug }} which points to {{ destination }}?
+      {% endblocktrans %}
+      </p>
+    </div>
+    <div class="card-footer btn-group">
+      <button type="submit" class="btn btn-danger">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        {% trans "Delete" %}
+      </button>
+      <a class="btn btn-secondary" href="{% url "redirect:index" %}">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        {% trans "Cancel" %}
+      </a>
+    </div>
+  </div>
 </form>
 {% endblock %}

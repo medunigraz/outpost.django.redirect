@@ -1,9 +1,10 @@
-{% if perms.redirect.add_redirecturl or user.is_superuser %}
+{% load i18n %}
 {% if request.user.is_authenticated %}
-<li>
-  <a href="{% url 'redirect:index' %}">
-    <span class="glyphicon glyphicon-fast-forward"></span>
-     URL Redirects
+{% if perms.redirect.add_redirecturl or user.is_superuser %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'redirect:index' %}" role="button">
+    <i class="fa fa-share" aria-hidden="true"></i>
+    {% trans "URL Redirects" %}
   </a>
 </li>
 {% endif %}
